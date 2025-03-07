@@ -15,18 +15,12 @@ namespace SalaryPackaging.Controllers
         [HttpPost]
         public IActionResult Calculate(Employee employee)
         {
-            if (!ModelState.IsValid)
-                return RedirectToAction("Index", new { error = "Invalid input" });
-
-            try
+            if (ModelState.IsValid)
             {
                 employee.SalaryPackagingLimit = _salaryPackagingService.CalculatePackageLimit(employee);
-                return View("Index", employee);
             }
-            catch (Exception ex)
-            {
-                return RedirectToAction("Index", new { error = ex.Message });
-            }
+                
+            return View("Index", employee);
         }
 
         public IActionResult Index()
