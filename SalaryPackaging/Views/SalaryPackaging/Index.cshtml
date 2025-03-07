@@ -1,0 +1,54 @@
+﻿@model Employee
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2>Caculator</h2>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Calculate" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Company Type</label>
+                            <select asp-for="CompanyType">
+                                <option value="Corporate">Corporate</option>
+                                <option value="Hospital">Hospital</option>
+                                <option value="PBI">PBI</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Employee Type</label>
+                            <select asp-for="EmploymentType">
+                                <option value="FullTime">FullTime</option>
+                                <option value="PartTime">PartTime</option>
+                                <option value="Casual">Casual</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Salary</label>
+                            <input class="form-control" asp-for="Salary" placeholder="Enter Salary" />
+                        </div>
+                        <div>
+                            <label class="form-label">Hours Per Week (Only for Part-time):</label>
+                            <input class="form-control" asp-for="HoursWorkedPerWeek" placeholder="Enter Hours Per Week" />
+                        </div>
+                        <div>
+                            <label class="form-label">Educated (Bachelor's degree or higher):</label>
+                            <input type="checkbox" asp-for="IsEducated" />
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary">Caculate</button>
+                        </div>
+                    </form>
+                </div>
+                <h3>Salary Packaging Limit: @(Model?.SalaryPackagingLimit ?? 0)</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
