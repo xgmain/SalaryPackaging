@@ -1,3 +1,4 @@
+using SalaryPackaging.Middleware;
 using SalaryPackaging.Models;
 using SalaryPackaging.Services;
 
@@ -19,6 +20,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseMiddleware<RedirectHomePageMiddleware>();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
