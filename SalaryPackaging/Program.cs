@@ -1,8 +1,13 @@
 using SalaryPackaging.Middleware;
-using SalaryPackaging.Models;
 using SalaryPackaging.Services;
+using SalaryPackaging.Services.Strategy;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Register Strategies with DI
+builder.Services.AddScoped<ISalaryPackagingStrategy, CorporateSalaryPackagingStrategy>();
+builder.Services.AddScoped<ISalaryPackagingStrategy, HospitalSalaryPackagingStrategy>();
+builder.Services.AddScoped<ISalaryPackagingStrategy, PBISalaryPackagingStrategy>();
 
 // Register services with DI
 builder.Services.AddScoped<ISalaryPackagingService, SalaryPackagingService>();
